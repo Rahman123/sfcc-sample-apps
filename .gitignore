@@ -16,3 +16,4 @@ tsconfig.json
 
 **/package-lock.json
 package-lock.json
+./packages/storefront-lwc/scripts/api.mjs

@@ -1,5 +1,6 @@
 import UniversalRouter from 'universal-router';
 import { createBrowserHistory } from 'history';
+var xss = require('xss');
 
 const history = createBrowserHistory();
 const router = new UniversalRouter(
@@ -11,7 +12,10 @@ const router = new UniversalRouter(
         {
             path: '/search/:query',
             action: location => {
-                return `<commerce-product-search-results query="${location.params.query}"></commerce-product-search-results>`;
+                var query = `${location.params.query}`;
+                query = xss(query);
+                console.log('router: ', query);
+                return `<commerce-product-search-results query="${query}"></commerce-product-search-results>`;
             },
         },
         {

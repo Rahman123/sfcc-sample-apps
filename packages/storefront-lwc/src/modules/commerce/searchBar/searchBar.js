@@ -7,6 +7,8 @@
 import { LightningElement, api } from 'lwc';
 import { navigate } from 'commerce/router';
 
+var xss = require('xss');
+
 /**
  * Search Bar where visitors can search for stuff
  */
@@ -18,6 +20,8 @@ export default class SearchBar extends LightningElement {
      */
     performSearch() {
         if (!!this.query) {
+            this.query = xss(this.query);
+            console.log('performSearch: ', this.query);
             navigate(`/search/${encodeURIComponent(this.query)}`);
         }
     }
