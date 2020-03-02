@@ -4,6 +4,7 @@ import {
     InMemoryCache,
     HttpLink,
 } from 'apollo-boost';
+import { setClient } from '@lwce/apollo-client';
 
 const httpLink = new HttpLink({
     uri: window.apiconfig.COMMERCE_API_PATH || '/api',
@@ -32,3 +33,5 @@ const apiClient = new ApolloClient({
 });
 
 export { apiClient };
+
+setClient(apiClient);
